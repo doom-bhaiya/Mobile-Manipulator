@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<!--
+	This is a basic empty world that is spawned with a sun. This file can be launched with empty_world_launch.launch file.
+
+	Author: Rubankumar D
+	Created On: 21st Mar 2023
+
+	Last Modification:
+	Modified by : Rubankumar D
+	Modified on : 21st Mar 2023
+ -->
+<sdf version="1.5">
+	<world name="default">
+		<!-- A global light source -->
+		<include>
+			<uri>model://sun</uri>
+		</include>
+
+		<!-- A ground plane -->
+		<include>
+			<uri>model://ground_plane</uri>
+		</include>
+	</world>
+</sdf>
