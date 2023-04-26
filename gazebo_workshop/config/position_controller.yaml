@@ -1,0 +1,12 @@
+position_controller1:
+  type: "velocity_controllers/JointVelocityController"
+  joint: 1_wheel
+position_controller2:
+  type: "velocity_controllers/JointVelocityController"
+  joint: 2_wheel
+position_controller3:
+  type: "velocity_controllers/JointVelocityController"
+  joint: 3_wheel
+position_controller4:
+  type: "velocity_controllers/JointVelocityController"
+  joint: 4_wheel
