@@ -8,7 +8,7 @@
             <origin xyz = "0 0 0" rpy = "0 0 0"/>
             <geometry>
                 <!-- <cylinder radius = "3" length = "2" /> -->
-                <mesh filename="package://gazebo_workshop/meshes/box.stl" scale= "0.001 0.001 0.001"/>
+                <mesh filename="package://vehicle_environment/meshes/box.stl" scale= "0.001 0.001 0.001"/>
                 
             </geometry>
         </visual>
@@ -16,7 +16,7 @@
         <collision>
             <origin xyz = "0 0 0" rpy = "0 0 0"/>
             <geometry>
-                <mesh filename="package://gazebo_workshop/meshes/box.stl" scale= "0.001 0.001 0.001"/>
+                <mesh filename="package://vehicle_environment/meshes/box.stl" scale= "0.001 0.001 0.001"/>
             </geometry>
         </collision>
 
@@ -36,7 +36,7 @@
                 <origin xyz = "0 0 0" rpy = "0 0 ${rot_z}"/>
                 <geometry>
                     <!-- <cylinder radius = "3" length = "2" /> -->
-                    <mesh filename="package://gazebo_workshop/meshes/wheel.stl" scale= "0.0001 0.0001 0.0001"/>
+                    <mesh filename="package://vehicle_environment/meshes/wheel.stl" scale= "0.0001 0.0001 0.0001"/>
                     
                 </geometry>
             </visual>
@@ -44,7 +44,7 @@
             <collision>
                 <origin xyz = "0 0 0" rpy = "0 0 ${rot_z}"/>
                 <geometry>
-                    <mesh filename="package://gazebo_workshop/meshes/wheel.stl" scale= "0.0001 0.0001 0.0001"/>
+                    <mesh filename="package://vehicle_environment/meshes/wheel.stl" scale= "0.0001 0.0001 0.0001"/>
                 </geometry>
             </collision>
 
