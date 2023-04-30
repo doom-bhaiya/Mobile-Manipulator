@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <launch>
-    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find gazebo_workshop)/urdf/bot.xacro'"/>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find vehicle_environment)/urdf/bot.xacro'"/>
 
     <arg name="x" default="0"/>
     <arg name="y" default="0"/>
     <arg name="z" default="0"/>
     <arg name="rvizconfig" default="$(find urdf_tutorial)/rviz/urdf.rviz" />
     
-    <include file="$(find gazebo_workshop)/launch/empty_world.launch">
+    <include file="$(find vehicle_environment)/launch/empty_world.launch">
     </include>
 
     <rosparam command="load"
-            file="$(find gazebo_workshop)/config/joints.yaml" ns="joint_state_controller"/>
+            file="$(find vehicle_environment)/config/joints.yaml" ns="joint_state_controller"/>
     <rosparam command="load"
-            file="$(find gazebo_workshop)/config/position_controller.yaml"/>
+            file="$(find vehicle_environment)/config/velocity_controller.yaml"/>
             
     <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true"/> -->
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
