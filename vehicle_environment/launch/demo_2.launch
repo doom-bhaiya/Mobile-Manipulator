@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <!-- Include the empty_world.launch file from gazebo_ros package -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!-- Set the path to your world file -->
+    <arg name="world_name" value="$(find vehicle_environment)/world/draft_1.world"/>
+    <!-- Set any other Gazebo and ROS parameters as needed -->
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+</launch>

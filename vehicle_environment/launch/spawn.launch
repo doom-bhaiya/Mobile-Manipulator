@@ -6,24 +6,32 @@
     <arg name="y" default="0"/>
     <arg name="z" default="0"/>
     <arg name="rvizconfig" default="$(find urdf_tutorial)/rviz/urdf.rviz" />
-    
-    <include file="$(find vehicle_environment)/launch/empty_world.launch">
-    </include>
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!-- Set the path to your world file -->
+    <arg name="world_name" value="$(find vehicle_environment)/world/draft_1.world"/>
+    <!-- Set any other Gazebo and ROS parameters as needed -->
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
 
     <rosparam command="load"
             file="$(find vehicle_environment)/config/joints.yaml" ns="joint_state_controller"/>
     <rosparam command="load"
             file="$(find vehicle_environment)/config/velocity_controller.yaml"/>
-            
+
     <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true"/> -->
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
     <node name="spawner" pkg="gazebo_ros" type="spawn_model" output="screen"
             args="-urdf -param robot_description -model swatchtha_bot -x $(arg x) -y $(arg y) -z $(arg z)"/>
-    
+
     <node name="r2d2_controller_spawner" pkg="controller_manager" type="spawner"
         args="joint_state_controller --shutdown-timeout 3"/>
-    <node name="position_spawner" pkg="controller_manager" type="spawner"
-        args="position_controller1 position_controller2 position_controller3 position_controller4 --shutdown-timeout 3"/>
+    <node name="velocity_controller_spawner" pkg="controller_manager" type="spawner"
+        args="velocity_controller1 velocity_controller2 velocity_controller3 velocity_controller4 --shutdown-timeout 3"/>
 </launch>
 
