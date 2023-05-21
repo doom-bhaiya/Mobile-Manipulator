@@ -29,6 +29,8 @@
     <node name="spawner" pkg="gazebo_ros" type="spawn_model" output="screen"
             args="-urdf -param robot_description -model swatchtha_bot -x $(arg x) -y $(arg y) -z $(arg z)"/>
 
+    <node name="Navigation" pkg="vehicle_environment" type="wheel_control.py" output="screen"/>
+
     <node name="r2d2_controller_spawner" pkg="controller_manager" type="spawner"
         args="joint_state_controller --shutdown-timeout 3"/>
     <node name="velocity_controller_spawner" pkg="controller_manager" type="spawner"
