@@ -387,4 +387,52 @@
         </joint>
     </transmission>
 
+    <gazebo reference="link1_base">
+        <mu1 value="200.0"/>
+        <mu2 value="100.0"/>
+        <kp value="100000.0" />
+        <kd value="100000.0" />
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <gazebo reference="link1">
+        <mu1 value="200.0"/>
+        <mu2 value="100.0"/>
+        <kp value="100000.0" />
+        <kd value="100000.0" />
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <gazebo reference="link1_top">
+        <mu1 value="200.0"/>
+        <mu2 value="100.0"/>
+        <kp value="100000.0" />
+        <kd value="100000.0" />
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <gazebo reference="link_2">
+        <mu1 value="200.0"/>
+        <mu2 value="100.0"/>
+        <kp value="100000.0" />
+        <kd value="100000.0" />
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <gazebo reference="link_3">
+        <mu1 value="200.0"/>
+        <mu2 value="100.0"/>
+        <kp value="100000.0" />
+        <kd value="100000.0" />
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <gazebo reference="gripper_base">
+        <mu1 value="200.0"/>
+        <mu2 value="100.0"/>
+        <kp value="100000.0" />
+        <kd value="100000.0" />
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
 </robot>

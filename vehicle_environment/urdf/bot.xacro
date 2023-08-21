@@ -98,7 +98,7 @@
         <mu2 value="100.0"/>
         <kp value="100000.0" />
         <kd value="100000.0" />
-        <material>Gazebo/Grey</material>
+        <material>Gazebo/Indigo</material>
     </gazebo>
 
     <gazebo reference="wheel_1">
@@ -131,6 +131,10 @@
         <kp value="100000.0" />
         <kd value="100000.0" />
         <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="base_link">
+        <selfCollide>true</selfCollide>
     </gazebo>
 
     <!-- <xacro:include filename="$(find vehicle_environment)/urdf/lidar.xacro"/> -->
