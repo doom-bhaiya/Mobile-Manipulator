@@ -1,0 +1,390 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <link name = "link1_base">
+
+        <visual>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/Link_1_base.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/Link_1_base.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value = "1.157"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <inertia ixx="0.068" ixy = "0" ixz = "-0.041"
+                     iyy = "0.094" iyz = "0" izz = "0.029"/>
+        </inertial>
+    </link>
+
+    <joint name='base_to_link1_base' type="fixed">
+        <parent link= "base_link"/>
+        <child link= "link1_base"/>
+        <origin xyz = "0.1495 0 0.202"/>
+    </joint>
+
+
+    <link name = "stepper_motor">
+
+        <visual>
+            <origin xyz = "-0.00816 0.00202 -0.0012" rpy = "3.1415 0 0"/>
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/stepper_motor.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz = "-0.00816 0.00202 -0.0012" rpy = "3.1415 0 0"/>
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/stepper_motor.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value = "1.4"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <inertia ixx="0.068" ixy = "0" ixz = "-0.041"
+                     iyy = "0.094" iyz = "0" izz = "0.029"/>
+        </inertial>
+    </link>
+
+    <joint name='link1_base_to_stepper_motor' type="fixed">
+        <parent link= "link1_base"/>
+        <child link= "stepper_motor"/>
+        <origin xyz = "0 0 0.0992" rpy = "0 0 0"/>
+    </joint>
+
+    <link name = "wheel_hub">
+
+        <visual>
+            <origin rpy = "0 0 0" xyz = "0 0 0" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/wheel_hub.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin rpy = "0 0 0" xyz = "0 0 0" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/wheel_hub.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value = "0.019"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <inertia ixx="0.0" ixy = "0" ixz = "-0.0"
+                     iyy = "0.0" iyz = "0" izz = "0.0"/>
+        </inertial>
+    </link>
+
+    <joint name='stepper_motor_to_wheel_hub' type="continuous">
+        <parent link= "stepper_motor"/>
+        <child link= "wheel_hub"/>
+        <origin xyz = "0 0 0" rpy = "0 0 0"/>
+        <axis xyz = "0 0 1"/>
+        <limit effort="0.4" velocity="0.4"/>
+    </joint>
+
+    <link name = "link1">
+
+        <visual>
+            <origin rpy = "0 0 0" xyz = "0 0 0" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/link_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin rpy = "0 0 0" xyz = "0 0 0" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/link_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value = "0.619"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <inertia ixx="0.00244" ixy = "0" ixz = "-0.0"
+                     iyy = "0.00244" iyz = "0" izz = "0.00732"/>
+        </inertial>
+    </link>
+
+    <joint name='wheel_hub_to_link1' type="fixed">
+        <parent link= "wheel_hub"/>
+        <child link= "link1"/>
+        <origin xyz = "0 0 0.005" rpy = "0 0 0"/>
+    </joint>
+
+    <link name = "link1_top">
+
+        <visual>
+            <origin rpy = "0 0 0" xyz = "0 0 0" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/link1_top.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin rpy = "0 0 0" xyz = "0 0 0" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/link1_top.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value = "0.149"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <inertia ixx="0.00501" ixy = "0" ixz = "-0.0"
+                     iyy = "0.00504" iyz = "0.00090" izz = "0.00094"/>
+        </inertial>
+    </link>
+
+    <joint name='link1_to_link1_top' type="fixed">
+        <parent link= "link1"/>
+        <child link= "link1_top"/>
+        <origin xyz = "0 0 0.1" rpy = "0 0 0"/>
+    </joint>
+
+    <link name = "servo_motor_1">
+
+        <visual>
+            <origin xyz = "0 0 -0.0049" rpy = "0 0 0" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/servo_motor_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz = "0 0 -0.0049" rpy = "0 0 0" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/servo_motor_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value = "0.17"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <inertia ixx="0.00468" ixy = "0" ixz = "-0.0"
+                     iyy = "0.00460" iyz = "0.00090" izz = "0.00080"/>
+        </inertial>
+    </link>
+
+    <joint name='link1_top_to_servo_motor_1' type="fixed">
+        <parent link= "link1_top"/>
+        <child link= "servo_motor_1"/>
+        <origin xyz = "0 0 0" rpy = "0 0 0"/>
+    </joint>
+
+    <link name = "link_2">
+
+        <visual>
+            <origin xyz = "0 0 0" rpy = "0 0 -0.785" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/link_2.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz = "0 0 0" rpy = "0 0 -0.785" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/link_2.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value = "0.17"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <inertia ixx="0.00468" ixy = "0" ixz = "-0.0"
+                     iyy = "0.00460" iyz = "0.00090" izz = "0.00080"/>
+        </inertial>
+    </link>
+
+    <joint name='servo_motor_1_to_link2' type="revolute">
+        <parent link= "servo_motor_1"/>
+        <child link= "link_2"/>
+        <origin xyz = "0 -0.08515 0.06" rpy = "1.57 3.1415 3.1415"/>
+        <axis xyz = "0 0 1"/>
+        <limit effort="0.6" velocity="0.3" lower="-1.047" upper="0.785" />
+    </joint>
+
+    <link name = "servo_motor_2">
+
+        <visual>
+            <origin xyz = "0 0 0" rpy = "0 0 0" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/servo_motor_2.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz = "0 0 0" rpy = "0 0 0" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/servo_motor_2.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value = "0.17"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <inertia ixx="0.000" ixy = "0" ixz = "-0.000641"
+                     iyy = "0.008032" iyz = "0.000" izz = "0.000"/>
+        </inertial>
+    </link>
+
+    <joint name='link2_to_servo_motor_2' type="fixed">
+        <parent link= "link_2"/>
+        <child link= "servo_motor_2"/>
+        <origin xyz = "0 0 0" rpy = "0 0 0"/>
+    </joint>
+
+    <link name = "link_3">
+
+        <visual>
+            <origin xyz = "0 0 0" rpy = "0 0 -0.785" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/link_3.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz = "0 0 0" rpy = "0 0 -0.785" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/link_3.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value = "0.438"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <inertia ixx="0.00434" ixy = "-0.00409" ixz = "-0.000324"
+                     iyy = "0.00431" iyz = "-0.000326" izz = "0.00836"/>
+        </inertial>
+    </link>
+
+    <joint name='servo_motor_2_to_link3' type="revolute">
+        <parent link= "servo_motor_2"/>
+        <child link= "link_3"/>
+        <origin xyz = "0.23 0 0.0805" rpy = "0 3.1415 -1.57"/>
+        <axis xyz = "0 0 1"/>
+        <limit effort="0.4" velocity="0.1" lower="-0.524" upper="2.094"/>
+    </joint>
+
+    <link name = "servo_motor_3">
+
+        <visual>
+            <origin xyz = "0 0 0" rpy = "0 0 0" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/servo_motor_3.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz = "0 0 0" rpy = "0 0 0" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/servo_motor_3.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value = "0.055"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <inertia ixx="0" ixy = "0" ixz = "0"
+                     iyy = "0" iyz = "0" izz = "0"/>
+        </inertial>
+    </link>
+
+    <joint name='link_3_to_servo_motor_3' type="fixed">
+        <parent link= "link_3"/>
+        <child link= "servo_motor_3"/>
+        <origin xyz = "0.18698 0 0.01" rpy = "0 1.57 0"/>
+    </joint>
+
+    <link name = "gripper_base">
+
+        <visual>
+            <origin xyz = "0 0 0" rpy = "0 -0 0" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/gripper_base.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz = "0 0 0" rpy = "0 0 0" />
+            <geometry>
+                <mesh filename="package://vehicle_environment/meshes/gripper_base.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value = "0.059"/>
+            <origin xyz = "0 0 0" rpy = "0 0 0"/>
+            <inertia ixx="0" ixy = "0" ixz = "0"
+                     iyy = "0" iyz = "0" izz = "0"/>
+        </inertial>
+    </link>
+
+    <joint name='servo_motor_3_to_gripper_base' type="continuous">
+        <parent link= "servo_motor_3"/>
+        <child link= "gripper_base"/>
+        <origin xyz = "0.01 0 0.0395" rpy = "0 0 0"/>
+        <axis xyz = "0 0 1"/>
+        <limit effort="0.1" velocity="0.3"/>
+    </joint>
+
+
+
+
+
+
+
+
+    <transmission name="transmission_joint_1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="stepper_motor">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="stepper_motor_to_wheel_hub">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+
+    <transmission name="transmission_joint_2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="link_2">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="servo_motor_1_to_link2">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+
+    <transmission name="transmission_joint_3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="link_3">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="servo_motor_2_to_link3">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+
+    <transmission name="transmission_joint_4">
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="gripper_base">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="servo_motor_3_to_gripper_base">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+
+</robot>

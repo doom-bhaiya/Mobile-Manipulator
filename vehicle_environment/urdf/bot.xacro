@@ -8,7 +8,7 @@
             <origin xyz = "0 0 0" rpy = "0 0 0"/>
             <geometry>
                 <!-- <cylinder radius = "3" length = "2" /> -->
-                <mesh filename="package://vehicle_environment/meshes/box.stl" scale= "0.001 0.001 0.001"/>
+                <mesh filename="package://vehicle_environment/meshes/Chassis.stl" scale="0.001 0.001 0.001"/>
                 
             </geometry>
         </visual>
@@ -16,58 +16,58 @@
         <collision>
             <origin xyz = "0 0 0" rpy = "0 0 0"/>
             <geometry>
-                <mesh filename="package://vehicle_environment/meshes/box.stl" scale= "0.001 0.001 0.001"/>
+                <mesh filename="package://vehicle_environment/meshes/Chassis.stl" scale="0.001 0.001 0.001"/>
             </geometry>
         </collision>
 
         <inertial>
-            <mass value = "1"/>
+            <mass value = "20"/>
             <origin xyz = "0 0 0" rpy = "0 0 0"/>
-            <inertia ixx="0.01" ixy = "0" ixz = "0"
-                     iyy = "0.0" iyz = "0" izz = "0.0"/>
+            <inertia ixx="0.90" ixy = "0" ixz = "0"
+                     iyy = "0.11" iyz = "0" izz = "0.14"/>
         </inertial>
     </link>
-    <xacro:property name="wheel_x_offset" value="0.179" />
-    <xacro:property name="wheel_y_offset" value="0.247" />
-    <xacro:macro name="wheel" params="is_right is_front rot_z num">
+    <xacro:property name="wheel_x_offset" value="0.02" />
+    <xacro:property name="wheel_y_offset" value="0.004" />
+    <xacro:property name="wheel_z_offset" value="0.04" />
+    <xacro:macro name="wheel" params="is_front is_left num">
         <link name = "wheel_${num}">
 
             <visual>
-                <origin xyz = "0 0 0" rpy = "0 0 ${rot_z}"/>
+                <origin xyz = "0 0 0" rpy = "0 0 0"/>
                 <geometry>
-                    <!-- <cylinder radius = "3" length = "2" /> -->
-                    <mesh filename="package://vehicle_environment/meshes/wheel.stl" scale= "0.0001 0.0001 0.0001"/>
+                    <mesh filename="package://vehicle_environment/meshes/wheel.stl" scale= "0.001 0.001 0.001"/>
                     
                 </geometry>
             </visual>
 
             <collision>
-                <origin xyz = "0 0 0" rpy = "0 0 ${rot_z}"/>
+                <origin xyz = "0 0 0" rpy = "0 0 0"/>
                 <geometry>
-                    <mesh filename="package://vehicle_environment/meshes/wheel.stl" scale= "0.0001 0.0001 0.0001"/>
+                    <mesh filename="package://vehicle_environment/meshes/wheel.stl" scale= "0.001 0.001 0.001"/>
                 </geometry>
             </collision>
 
             <inertial>
-                <mass value = "1"/>
+                <mass value = "0.5"/>
                 <origin xyz = "0 0 0" rpy = "0 0 0"/>
-                <inertia ixx="0.01" ixy = "0" ixz = "0"
-                        iyy = "0.0" iyz = "0" izz = "0.0"/>
+                <inertia ixx="0.0007" ixy = "0" ixz = "0"
+                        iyy = "0.0014" iyz = "0" izz = "0.0007"/>
             </inertial>
         </link>
 
         <joint name='${num}_wheel' type="continuous">
             <parent link= "base_link"/>
             <child link= "wheel_${num}"/>
-            <origin xyz = "${is_right} ${is_front} 0"/>
+            <origin xyz = "${is_front} ${is_left} ${wheel_z_offset}"/>
             <axis xyz="0 1 0"/>
         </joint>
     </xacro:macro>
 
-    <xacro:wheel is_right = "0.179" is_front = "0.247" rot_z = "3.1415" num="1"/> 
-    <xacro:wheel is_right = "-0.179" is_front = "0.247" rot_z = "3.1415" num="2"/> 
-    <xacro:wheel is_right = "0.179" is_front = "-0.247" rot_z = "0" num="3"/> 
-    <xacro:wheel is_right = "-0.179" is_front = "-0.247" rot_z = "0" num="4"/> 
+    <xacro:wheel is_front = "0.20" is_left = "-0.255"  num="1"/> 
+    <xacro:wheel is_front = "-0.20" is_left = "-0.255" num="2"/> 
+    <xacro:wheel is_front = "0.20" is_left = "0.255" num="3"/> 
+    <xacro:wheel is_front = "-0.20" is_left = "0.255" num="4"/> 
 
     <xacro:macro name="transmission_tag" params="wheel_num">
 
@@ -80,13 +80,6 @@
                 <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
             </joint>
         </transmission>
-        <gazebo reference="${wheel_num}_wheel">
-            <mu1 value="200.0"/>
-            <mu2 value="100.0"/>
-            <kp value="10000000.0" />
-            <kd value="1.0" />
-            <material>Gazebo/Red</material>
-        </gazebo>
     </xacro:macro>
 
     <xacro:transmission_tag wheel_num="1"/>
@@ -95,11 +88,83 @@
     <xacro:transmission_tag wheel_num="4"/>
 
 
+
+
+
+    <xacro:include filename="$(find vehicle_environment)/urdf/manipulator.xacro"/>
+
+    <gazebo reference="base_link">
+        <mu1 value="200.0"/>
+        <mu2 value="100.0"/>
+        <kp value="100000.0" />
+        <kd value="100000.0" />
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <gazebo reference="wheel_1">
+        <mu1 value="200.0"/>
+        <mu2 value="100.0"/>
+        <kp value="100000.0" />
+        <kd value="100000.0" />
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="wheel_2">
+        <mu1 value="200.0"/>
+        <mu2 value="100.0"/>
+        <kp value="100000.0" />
+        <kd value="100000.0" />
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="wheel_3">
+        <mu1 value="200.0"/>
+        <mu2 value="100.0"/>
+        <kp value="100000.0" />
+        <kd value="100000.0" />
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="wheel_4">
+        <mu1 value="200.0"/>
+        <mu2 value="100.0"/>
+        <kp value="100000.0" />
+        <kd value="100000.0" />
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <!-- <xacro:include filename="$(find vehicle_environment)/urdf/lidar.xacro"/> -->
+    <xacro:include filename="$(find vehicle_environment)/urdf/camera.xacro"/>
+    <xacro:include filename="$(find vehicle_environment)/urdf/imu.xacro"/>
+
+
     <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
             <robotNamespace>/</robotNamespace>
         </plugin>
     </gazebo>
  </robot>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

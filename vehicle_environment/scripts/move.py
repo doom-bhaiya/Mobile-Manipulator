@@ -28,6 +28,7 @@ def main():
     wheel_pub[3] = rospy.Publisher('/velocity_controller4/command', Float64, queue_size=10) #backside_right_wheel
     straight(speed)
 main()
+
 if (__name__ == '__main__'):
     try:
         pass

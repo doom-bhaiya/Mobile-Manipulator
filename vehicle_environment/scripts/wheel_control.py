@@ -23,7 +23,7 @@ wheel3_pub = rospy.Publisher(wheel3_topic, Float64, queue_size=10)
 wheel4_pub = rospy.Publisher(wheel4_topic, Float64, queue_size=10)
 
 # Robot width (Distance between two wheels of the same side in meters)
-robot_width = 0
+robot_width = 0.45
 
 # Callback function for cmd_vel messages
 def cmd_vel_callback(msg):
@@ -36,10 +36,10 @@ def cmd_vel_callback(msg):
     right_wheel_speed = linear_velocity + (angular_velocity * robot_width / 2)
 
     # Publish the calculated wheel speeds to the individual wheel control topics
-    wheel1_pub.publish(left_wheel_speed)
-    wheel2_pub.publish(left_wheel_speed)
-    wheel3_pub.publish(right_wheel_speed)
-    wheel4_pub.publish(right_wheel_speed)
+    wheel1_pub.publish(right_wheel_speed)
+    wheel2_pub.publish(right_wheel_speed)
+    wheel3_pub.publish(left_wheel_speed)
+    wheel4_pub.publish(left_wheel_speed)
 
 # Register shutdown callback function
 def shutdown_callback():
