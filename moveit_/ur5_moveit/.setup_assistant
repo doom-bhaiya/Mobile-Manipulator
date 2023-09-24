@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: vehicle_environment
+    relative_path: urdf/bot.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/swatchtha_bot.srdf
+  CONFIG:
+    author_name: Rubankumar D
+    author_email: drubankumar1202@gmail.com
+    generated_timestamp: 1695443022
