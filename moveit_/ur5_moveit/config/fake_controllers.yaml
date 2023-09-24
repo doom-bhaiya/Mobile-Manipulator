@@ -1,0 +1,14 @@
+controller_list:
+  - name: fake_arm_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - stepper_motor_to_wheel_hub
+      - servo_motor_1_to_link2
+      - servo_motor_2_to_link3
+  - name: fake_gripper_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - servo_motor_3_to_gripper_base
+initial:  # Define initial robot poses per group
+  - group: arm
+    pose: stretch
